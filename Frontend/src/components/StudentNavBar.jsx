@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaEnvelope, FaUserCircle, FaBars, FaSignOutAlt } from "react-icons/fa";
 import { MdArrowDropDown, MdClose } from "react-icons/md";
-import logo from "../assets/doubtsync-logo.svg";
+import logo from "../assets/livementor-logo.svg";
 import styles from "./css/StudentNavBar.module.css";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";

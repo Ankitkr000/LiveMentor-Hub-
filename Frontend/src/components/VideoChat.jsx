@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import socket from "../socket";
 import ChatRoom from "./ChatRoom";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/doubtsync-logo.svg";
+import logo from "../assets/livementor-logo.svg";
 
 import styles from "./css/VideoChat.module.css"; 
 

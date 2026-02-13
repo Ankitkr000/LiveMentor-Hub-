@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import socket from "../socket";
 import axios from "axios";
 import VideoChat from "./VideoChat";
+import CreateMeeting from "./CreateMeeting";
+import MeetingsList from "./MeetingsList";
 import styles from "./css/TeacherDashboard.module.css";
 import StudentNavBar from "./StudentNavBar";
 
@@ -16,6 +18,9 @@ const TeacherDashboard = () => {
   const [roomId, setRoomId] = useState(null);
   const [subjects, setSubjects] = useState([]);
   const [userLoaded, setUserLoaded] = useState(false);
+  const [showCreateMeeting, setShowCreateMeeting] = useState(false);
+  const [showMeetings, setShowMeetings] = useState(false);
+  const [meetingsRefreshKey, setMeetingsRefreshKey] = useState(0);
   const userId = localStorage.getItem("userId");
 
   useEffect(() => {
@@ -130,6 +135,11 @@ const handleAccept = async () => {
 };
 
 
+  const handleMeetingCreated = () => {
+    setMeetingsRefreshKey(prev => prev + 1);
+    setShowMeetings(true);
+  };
+
   if (!userLoaded) return <p className={styles.loadingText}>Loading dashboard...</p>;
 
   return (
@@ -141,6 +151,29 @@ const handleAccept = async () => {
             <h2 className={styles.greeting}>
               👋 Welcome back, <span>{localStorage.getItem("userName")}</span>
             </h2>
+
+            {/* Group Meeting Controls */}
+            <div className={styles.meetingControls}>
+              <button 
+                className={styles.createMeetingBtn}
+                onClick={() => setShowCreateMeeting(true)}
+              >
+                ➕ Create Group Meeting
+              </button>
+              <button 
+                className={styles.viewMeetingsBtn}
+                onClick={() => setShowMeetings(!showMeetings)}
+              >
+                📋 {showMeetings ? "Hide" : "View"} My Meetings
+              </button>
+            </div>
+
+            {showMeetings && (
+              <div className={styles.meetingsSection}>
+                <MeetingsList key={meetingsRefreshKey} userRole="teacher" />
+              </div>
+            )}
+
 <div className={styles.skillsBox}>
   <div className={styles.skillsHeader}>
     <h4>Your Skills</h4>
@@ -201,6 +234,12 @@ const handleAccept = async () => {
           </>
         )}
 
+        {showCreateMeeting && (
+          <CreateMeeting 
+            onClose={() => setShowCreateMeeting(false)} 
+            onMeetingCreated={handleMeetingCreated}
+          />
+        )}
 
       </div>
     </>

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import ChatRoom from "./ChatRoom";
 import VideoChat from "./VideoChat";
+import MeetingsList from "./MeetingsList";
 import styles from "./css/StudentDashboard.module.css"; 
 import StudentNavBar from "./StudentNavBar";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +21,7 @@ const StudentDashboard = () => {
   const [countdown, setCountdown] = useState(60);
   const [isConnected, setIsConnected] = useState(false);
   const [isWaitingForTutor, setIsWaitingForTutor] = useState(false);
+  const [showMeetings, setShowMeetings] = useState(false);
 
   const userName = localStorage.getItem("userName");
 
@@ -149,7 +151,23 @@ useEffect(() => {
                   />
                 </span>
               </h2>
+{/* View Group Meetings Button */}
+              <div className={styles.meetingControlsStudent}>
+                <button 
+                  className={styles.viewGroupMeetingsBtn}
+                  onClick={() => setShowMeetings(!showMeetings)}
+                >
+                  🎥 {showMeetings ? "Hide" : "View"} Group Meetings
+                </button>
+              </div>
 
+              {showMeetings && (
+                <div className={styles.meetingsSectionStudent}>
+                  <MeetingsList userRole="student" />
+                </div>
+              )}
+
+              
               <div className={styles.askDoubtContainer}>
                 <h2>Ask Your Doubt</h2>
                 <textarea

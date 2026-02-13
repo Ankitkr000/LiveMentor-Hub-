@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #0e001f, #170034, #1a002b);
+  background: linear-gradient(135deg, #0a0e27 0%, #111827 25%, #1e1b4b 50%, #111827 75%, #0a0e27 100%);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #f3f4f6;
 }
@@ -17,23 +17,26 @@
 }
 
 .backBtn {
-  background: linear-gradient(to right, #7c3aed, #9333ea);
+  background: linear-gradient(135deg, #f59e0b, #fbbf24, #8b5cf6);
   background-size: 200% auto;
   background-position: left center;
   color: white;
   padding: 0.5rem 1.2rem;
-  border: none;
+  border: 2px solid rgba(251, 191, 36, 0.3);
   border-radius: 999px;
   font-weight: 600;
   font-size: 0.95rem;
   cursor: pointer;
-  transition: background-position 0.4s ease-in-out, background 0.4s ease-in-out;
-  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4), 0 0 30px rgba(139, 92, 246, 0.15);
 }
 
 .backBtn:hover {
-  background: linear-gradient(to right, #5b21b6, #6d28d9);
+  background: linear-gradient(135deg, #fbbf24, #d97706, #a78bfa);
   background-position: right center;
+  border-color: rgba(251, 191, 36, 0.6);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5), 0 0 50px rgba(139, 92, 246, 0.25);
 }
 
 .welcomeText {
@@ -44,7 +47,7 @@
 }
 
 .welcomeText span {
-  color: #a78bfa;
+  color: #a5b4fc;
 }
 
 .signupBody {
@@ -79,7 +82,15 @@
   width: 100%;
   max-width: 400px;
   padding: 2rem;
-  border-radius: 20px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 80px rgba(245, 158, 11, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   background-color: rgba(255, 255, 255, 0.12);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(18px);
@@ -96,7 +107,7 @@
 
 .signupRole {
   text-transform: capitalize;
-  color: #c084fc;
+  color: #fbbf24;
 }
 
 .formGroup {
@@ -120,24 +131,28 @@
 
 .formInput:focus {
   outline: none;
-  border-color: #c084fc;
-  box-shadow: 0 0 0 2px rgba(192, 132, 252, 0.3);
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.4), 0 8px 24px rgba(245, 158, 11, 0.15);
   background-color: rgba(255, 255, 255, 0.2);
 }
 
 .signupButton {
-  background-color: #a78bfa;
+  background: linear-gradient(135deg, #f59e0b, #d97706, #8b5cf6);
   color: white;
   padding: 0.7rem;
   font-weight: 600;
-  border: none;
+  border: 2px solid rgba(251, 191, 36, 0.3);
   border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.25s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4), 0 0 40px rgba(139, 92, 246, 0.15);
 }
 
 .signupButton:hover {
-  background-color: #8b5cf6;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b, #a78bfa);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.5), 0 0 60px rgba(139, 92, 246, 0.2);
+  border-color: rgba(251, 191, 36, 0.6);
 }
 
 .loginText {
@@ -148,7 +163,7 @@
 }
 
 .loginLink {
-  color: #c084fc;
+  color: #f9a8d4;
   font-weight: 500;
   text-decoration: none;
 }

@@ -113,11 +113,74 @@ socket.on("join_room", ({ roomId }) => {
 
 socket.on("leave_room", ({ roomId }) => {
   socket.leave(roomId);
-  socket.to(roomId).emit("user_left");  // Inform the other peer
+  socket.to(roomId).emit("user_left", { socketId: socket.id });  // Inform others with socket ID
 
   console.log(` ${socket.id} left room: ${roomId}`);
 
 });
+
+
+// Group meeting handlers
+socket.on("join_group_meeting", ({ meetingLink, userName, userId }) => {
+  try {
+    socket.join(meetingLink);
+    
+    // Get all other participants in the room
+    const room = io.sockets.adapter.rooms.get(meetingLink);
+    const participants = room ? Array.from(room).filter(id => id !== socket.id) : [];
+    
+    console.log(`${userName} (${socket.id}) joined group meeting: ${meetingLink}`);
+    console.log(`Current participants: ${participants.length + 1}`);
+    
+    // Notify existing participants about new user
+    socket.to(meetingLink).emit("new_participant_joined", {
+      socketId: socket.id,
+      userName,
+      userId
+    });
+    
+    // Send existing participants list to new user
+    socket.emit("existing_participants", { participants });
+    
+  } catch (error) {
+    console.error("Error joining group meeting:", error);
+    socket.emit("error", { message: "Failed to join meeting" });
+  }
+});
+
+socket.on("leave_group_meeting", ({ meetingLink }) => {
+  socket.leave(meetingLink);
+  socket.to(meetingLink).emit("participant_left", { socketId: socket.id });
+  console.log(`${socket.id} left group meeting: ${meetingLink}`);
+});
+
+// WebRTC signaling for group calls
+socket.on("group_offer", ({ offer, targetSocketId, meetingLink }) => {
+  console.log(`Forwarding offer from ${socket.id} to ${targetSocketId}`);
+  io.to(targetSocketId).emit("group_offer", {
+    offer,
+    fromSocketId: socket.id,
+    meetingLink
+  });
+});
+
+socket.on("group_answer", ({ answer, targetSocketId, meetingLink }) => {
+  console.log(`Forwarding answer from ${socket.id} to ${targetSocketId}`);
+  io.to(targetSocketId).emit("group_answer", {
+    answer,
+    fromSocketId: socket.id,
+    meetingLink
+  });
+});
+
+socket.on("group_ice_candidate", ({ candidate, targetSocketId, meetingLink }) => {
+  io.to(targetSocketId).emit("group_ice_candidate", {
+    candidate,
+    fromSocketId: socket.id,
+    meetingLink
+  });
+});
+
 
 
 

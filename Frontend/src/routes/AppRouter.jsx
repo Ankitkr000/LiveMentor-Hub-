@@ -8,6 +8,7 @@ import Profile from "../components/Profile";
 import TeacherSkillSelect from "../components/TeacherSkillSelect";
 import PremiumPage from "../pages/Premium";
 import VideoChatWrapper from "../pages/VideoChatWrapper";
+import GroupVideoChat from "../components/GroupVideoChat";
 import ProtectedRoute from "../components/ProtectedRoute";
 
 import NotFound from "../pages/NotFound";
@@ -66,6 +67,14 @@ const AppRouter = ({ user, setUser, loadingUser }) => {
           element={
             <ProtectedRoute allowedRoles={["student", "teacher"]} user={user} loadingUser={loadingUser}>
               <VideoChatWrapper />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-meeting/:meetingLink"
+          element={
+            <ProtectedRoute allowedRoles={["student", "teacher"]} user={user} loadingUser={loadingUser}>
+              <GroupVideoChat />
             </ProtectedRoute>
           }
         />
