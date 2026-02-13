@@ -88,8 +88,8 @@ socket.on("join_room", ({ roomId }) => {
 
 
 
-    socket.on("send_message", ({ roomId, sender, message }) => {
-      io.to(roomId).emit("receive_message", { sender, message });
+    socket.on("send_message", ({ roomId, sender, message, fileData }) => {
+      io.to(roomId).emit("receive_message", { sender, message, fileData });
     });
 
   
