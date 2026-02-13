@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import ChatRoom from "./ChatRoom";
 import VideoChat from "./VideoChat";
 import MeetingsList from "./MeetingsList";
+import AIAssistant from "./AIAssistant";
 import styles from "./css/StudentDashboard.module.css"; 
 import StudentNavBar from "./StudentNavBar";
 import { useNavigate } from "react-router-dom";
@@ -22,6 +23,7 @@ const StudentDashboard = () => {
   const [isConnected, setIsConnected] = useState(false);
   const [isWaitingForTutor, setIsWaitingForTutor] = useState(false);
   const [showMeetings, setShowMeetings] = useState(false);
+  const [showAIAssistant, setShowAIAssistant] = useState(false);
 
   const userName = localStorage.getItem("userName");
 
@@ -233,6 +235,23 @@ useEffect(() => {
               </button>
             </div>
           </div>
+        )}
+
+        {/* AI Assistant */}
+        <AIAssistant 
+          isOpen={showAIAssistant} 
+          onClose={() => setShowAIAssistant(false)} 
+        />
+
+        {/* Floating AI Button */}
+        {!showAIAssistant && !isConnected && (
+          <button
+            className={styles.floatingAIBtn}
+            onClick={() => setShowAIAssistant(true)}
+            title="Open AI Assistant"
+          >
+            🤖
+          </button>
         )}
       </div>
     </>

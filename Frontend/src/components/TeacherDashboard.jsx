@@ -4,6 +4,7 @@ import axios from "axios";
 import VideoChat from "./VideoChat";
 import CreateMeeting from "./CreateMeeting";
 import MeetingsList from "./MeetingsList";
+import AIAssistant from "./AIAssistant";
 import styles from "./css/TeacherDashboard.module.css";
 import StudentNavBar from "./StudentNavBar";
 
@@ -21,6 +22,7 @@ const TeacherDashboard = () => {
   const [showCreateMeeting, setShowCreateMeeting] = useState(false);
   const [showMeetings, setShowMeetings] = useState(false);
   const [meetingsRefreshKey, setMeetingsRefreshKey] = useState(0);
+  const [showAIAssistant, setShowAIAssistant] = useState(false);
   const userId = localStorage.getItem("userId");
 
   useEffect(() => {
@@ -240,7 +242,24 @@ const handleAccept = async () => {
             onMeetingCreated={handleMeetingCreated}
           />
         )}
+  {/* AI Assistant */}
+        <AIAssistant 
+          isOpen={showAIAssistant} 
+          onClose={() => setShowAIAssistant(false)} 
+        />
 
+        {/* Floating AI Button when not showing the full assistant */}
+        {!showAIAssistant && !roomId && (
+          <button
+            className={styles.floatingAIBtn}
+            onClick={() => setShowAIAssistant(true)}
+            title="Open AI Assistant"
+          >
+            🤖
+          </button>
+        )}
+
+      
       </div>
     </>
   );
