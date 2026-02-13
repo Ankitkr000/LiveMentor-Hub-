@@ -109,6 +109,25 @@
   border-top: 1px solid #e2e8f0;
 }
 
+.attachButton {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: #f1f5f9;
+  color: #64748b;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.attachButton:hover {
+  background-color: #e2e8f0;
+  color: #475569;
+}
+
 .chatInput {
   flex: 1;
   padding: 12px 18px;
@@ -142,6 +161,198 @@
 
 .sendButton:hover {
   background-color: #4f46e5;
+}
+
+/* File Preview Styles */
+.filePreview {
+  padding: 12px 20px;
+  background-color: #ffffff;
+  border-top: 1px solid #e2e8f0;
+}
+
+.previewContent {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background-color: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.previewImage {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #e2e8f0;
+}
+
+.previewFile {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f1f5f9;
+  border-radius: 8px;
+  color: #64748b;
+}
+
+.previewInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.previewName {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1e293b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 200px;
+}
+
+.previewSize {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.removeFileBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s ease;
+}
+
+.removeFileBtn:hover {
+  background-color: #dc2626;
+}
+
+/* File Message Styles */
+.fileMessage {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.imageContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.chatImage {
+  max-width: 250px;
+  max-height: 250px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.chatImage:hover {
+  transform: scale(1.02);
+}
+
+.fileContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 10px;
+  min-width: 250px;
+}
+
+.sent .fileContainer {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.fileIcon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  color: #6366f1;
+}
+
+.sent .fileIcon {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.fileInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fileName {
+  font-size: 13px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 180px;
+}
+
+.fileSize {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+.downloadBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #6366f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.downloadBtn:hover {
+  background-color: #6366f1;
+  color: white;
+  transform: scale(1.1);
+}
+
+.sent .downloadBtn {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.sent .downloadBtn:hover {
+  background-color: white;
+  color: #6366f1;
+}
+
+.fileCaption {
+  font-size: 13px;
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.sent .fileCaption {
+  border-top-color: rgba(255, 255, 255, 0.3);
 }
 
 .typingIndicator {

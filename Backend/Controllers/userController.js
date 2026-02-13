@@ -35,6 +35,7 @@ const signup=async(req,res)=>{
       
         const hashedPassword=await bcrypt.hash(password,10)
         const newUser=new userModel({name,email,password:hashedPassword,role})
+        console.log("check-1")
         await newUser.save()
 
         res.status(200).json({message:"User registred successfully", success:true})
