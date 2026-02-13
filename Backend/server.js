@@ -24,6 +24,7 @@ app.use(express.json());
 
 app.use("/", require("./Routes/userRoute"));
 app.use("/meeting", require("./Routes/meetingRoute"));
+app.use("/ai", require("./Routes/aiRoute"));
 
 
 const server = http.createServer(app);
