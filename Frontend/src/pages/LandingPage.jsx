@@ -9,7 +9,7 @@ import ConnectAnimation from '../assets/online-videocall.json';
 import avatar1 from "../assets/avatars/avatar1.jpg"
 import avatar2 from "../assets/avatars/avatar2.jpg"
 import avatar3 from "../assets/avatars/avatar3.jpg"
-import Doubtlogo from "../assets/doubtsync-logo.svg";
+import Doubtlogo from "../assets/livementor-logo.svg";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserGraduate, faChalkboardTeacher } from "@fortawesome/free-solid-svg-icons";
@@ -132,12 +132,12 @@ const LandingPage = () => {
       {/* Hero Section */}
       <main className="hero-section">
         <div className="announcement-banner">
-          ⚡ Instant 1-on-1 Help from Expert Mentors — Anytime, Anywhere!
+          🎓 Live Virtual Classroom Support — Chat, Video & Content Sharing!
         </div>
 
 <h1 className="main-heading">
-  Save Time. Learn Faster.<br />
-  <span className="gradient-text">Connect with Mentors Instantly.</span>
+  Remote Classroom Platform<br />
+  <span className="gradient-text">Learn Together, Anytime, Anywhere.</span>
 </h1>
 
 
@@ -147,8 +147,8 @@ const LandingPage = () => {
 
 
         <p className="sub-heading">
-          LiveMentor-Hub connects you to live mentors in under 60 seconds.<br />
-          No more waiting. Just real-time solutions.
+          LiveMentor-Hub provides live virtual classroom support with seamless chat, video, and content sharing features.<br />
+          Connect with mentors and collaborate in real-time.
         </p>
 
         <button onClick={handleGetStarted} className="get-started">
@@ -215,24 +215,24 @@ const LandingPage = () => {
 <div className="why-icon">
   <BoltIcon className="icon-bolt" />
 </div>
-      <h3>Instant Connectivity</h3>
-      <p>Connect to a subject expert in less than 60 seconds — no queues, no delays.</p>
+      <h3>Live Chat Support</h3>
+      <p>Real-time messaging with mentors and peers. Collaborate instantly with text chat.</p>
     </div>
 
     <div className="why-card">
       <div className="why-icon">
         <Video size={36} color="#00c2ff" />
       </div>
-      <h3>Live 1-on-1 Doubt Solving</h3>
-      <p>Interact over HD video/audio with screen sharing and collaborative tools.</p>
+      <h3>Video Classroom Sessions</h3>
+      <p>Face-to-face learning with high-quality video calls. Experience live virtual classrooms.</p>
     </div>
 
     <div className="why-card">
       <div className="why-icon">
         <ShieldCheck size={36} color="#ff6b81" />
       </div>
-      <h3>Secure & Confidential</h3>
-      <p>All sessions are end-to-end encrypted with privacy-first architecture.</p>
+      <h3>Content Sharing</h3>
+      <p>Share documents, images, and files seamlessly during sessions. Collaborate with ease.</p>
     </div>
 
   </div>

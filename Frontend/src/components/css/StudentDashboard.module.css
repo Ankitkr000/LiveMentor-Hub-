@@ -40,13 +40,13 @@
   gap: 40px;
   background: linear-gradient(
     to bottom,
-    #0f0018 0%,
-    #1a002a 15%,
-    #8f5dd8 35%,
-    #b984f2 50%,
-    #8f5dd8 65%,
-    #2a004f 85%,
-    #140022 100%
+    #0a0e27 0%,
+    #111827 15%,
+    rgba(245, 158, 11, 0.15) 35%,
+    rgba(139, 92, 246, 0.15) 50%,
+    rgba(245, 158, 11, 0.15) 65%,
+    #111827 85%,
+    #0a0e27 100%
   );
   background-attachment: fixed;
   background-size: cover;
@@ -67,27 +67,39 @@
 
 /* ========= Ask Doubt Box ========= */
 .askDoubtContainer {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(25px) saturate(180%);
   padding: 40px;
   border-radius: 24px;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    0 0 80px rgba(245, 158, 11, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.2);
   width: 90%;
   max-width: 600px;
   text-align: center;
-  transition: transform 0.3s ease-in-out;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   animation: fadeInUp 0.6s ease-in-out;
-  color: #1f1f1f;
+  color: #f3f4f6;
+  position: relative;
 }
 
 .askDoubtContainer:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
+  box-shadow: 
+    0 25px 80px rgba(0, 0, 0, 0.5),
+    0 0 100px rgba(245, 158, 11, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border-color: rgba(251, 191, 36, 0.35);
 }
 
 .askDoubtContainer h2 {
   font-size: 30px;
   font-weight: 800;
   margin-bottom: 24px;
-  color: #3c1f91;
+  color: #fbbf24;
+  text-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
 }
 
 
@@ -97,7 +109,13 @@ textarea {
   padding: 16px;
   font-size: 16px;
   border-radius: 14px;
-  border: 1px solid #ccc;
+  border: 2px solid rgba(251, 191, 36, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  color: #f3f4f6;
+  resize: vertical;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2);
   resize: none;
   outline: none;
   background-color: #f9faff;
@@ -107,8 +125,8 @@ textarea {
 }
 
 textarea:focus {
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
-  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.3), 0 8px 30px rgba(245, 158, 11, 0.2);
+  border-color: #fbbf24;
 }
 
 
@@ -123,54 +141,60 @@ textarea:focus {
 
 .subjectBtn {
   padding: 10px 20px;
-  background: #ffffff;
-  color: #3c1f91;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fbbf24;
   font-weight: 600;
-  border: 2px solid transparent;
+  border: 2px solid rgba(251, 191, 36, 0.25);
   border-radius: 50px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
 }
 
 .subjectBtn:hover {
-  border-color: #3c1f91;
-  background-color: #f0f6ff;
-  transform: translateY(-2px);
+  border-color: #fbbf24;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(139, 92, 246, 0.15));
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3), 0 0 40px rgba(139, 92, 246, 0.15);
 }
 
 .selected {
-  background-color: #3c1f91;
+  background: linear-gradient(135deg, #f59e0b, #d97706, #8b5cf6);
   color: #ffffff;
-  border: 2px solid #3c1f91;
+  border: 2px solid rgba(251, 191, 36, 0.5);
   font-weight: bold;
-  box-shadow: 0 4px 12px rgba(60, 31, 145, 0.3);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4), 0 0 40px rgba(139, 92, 246, 0.2);
 }
 .selected:hover {
-  background-color: #3c1f91;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b, #a78bfa);
   color: #ffffff;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.5), 0 0 60px rgba(139, 92, 246, 0.25);
 
 }
 
 
 /* ========= Ask Button ========= */
 .askBtn {
-  background-color: #3c1f91;
+  background: linear-gradient(135deg, #f59e0b, #d97706, #8b5cf6);
   color: white;
   padding: 14px 30px;
   margin-top: 30px;
-  border: none;
+  border: 2px solid rgba(251, 191, 36, 0.3);
   border-radius: 14px;
   font-size: 16px;
   font-weight: 700;
-  box-shadow: 0 6px 20px rgba(60, 31, 145, 0.4);
-  transition: all 0.3s ease;
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.4), 0 0 50px rgba(139, 92, 246, 0.2);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
 
 .askBtn:hover {
-  background-color: #2a1473;
-  transform: scale(1.05);
+  background: linear-gradient(135deg, #fbbf24, #f59e0b, #a78bfa);
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 0 12px 40px rgba(245, 158, 11, 0.5), 0 0 80px rgba(139, 92, 246, 0.3);
+  border-color: rgba(251, 191, 36, 0.6);
 }
 
 .askBtn:disabled {
@@ -247,6 +271,40 @@ textarea:focus {
   margin-top: 10px;
   margin-bottom: 0px;
   margin-left: 6px;
+}
+
+/* Meeting Controls for Student */
+.meetingControlsStudent {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  width: 90%;
+  max-width: 600px;
+}
+
+.viewGroupMeetingsBtn {
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #f59e0b, #fbbf24, #8b5cf6);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 30px rgba(251, 191, 36, 0.3);
+  width: 100%;
+}
+
+.viewGroupMeetingsBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(251, 191, 36, 0.4), 0 0 40px rgba(139, 92, 246, 0.2);
+}
+
+.meetingsSectionStudent {
+  width: 90%;
+  max-width: 1200px;
+  margin: 20px 0;
 }
 
 

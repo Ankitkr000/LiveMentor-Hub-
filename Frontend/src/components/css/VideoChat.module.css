@@ -8,10 +8,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #f3f3f3;
+  background: #f8fafc;
   
   padding: 12px 20px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e2e8f0;
   height: 60px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
   z-index: 100;
@@ -45,8 +45,12 @@
 .brandName {
   font-size: 20px; 
   font-weight: 700;
-  color: #5b2a86;
+  background: linear-gradient(135deg, #fbbf24, #f59e0b, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
    font-family: 'Segoe UI', sans-serif;
+   filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.2));
 }
 
 .navbarRightControls {

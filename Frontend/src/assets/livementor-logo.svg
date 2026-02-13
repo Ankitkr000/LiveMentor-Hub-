@@ -1,0 +1,77 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradient Definitions -->
+  <defs>
+    <linearGradient id="luxuryGoldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="lightGoldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fef3c7;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#fbbf24;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="violetGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a78bfa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="glowEffect" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Glow Effect -->
+  <circle cx="60" cy="60" r="58" fill="url(#glowEffect)" opacity="0.3"/>
+  
+  <!-- Background Circle -->
+  <circle cx="60" cy="60" r="58" fill="url(#luxuryGoldGradient)" stroke="#fbbf24" stroke-width="2.5" opacity="0.95"/>
+  
+  <!-- Inner Ring for Depth -->
+  <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(254, 243, 199, 0.3)" stroke-width="1"/>
+  
+  <!-- Computer Monitor/Screen -->
+  <rect x="30" y="35" width="60" height="42" rx="3" fill="white" opacity="0.98"/>
+  <rect x="33" y="38" width="54" height="36" rx="1" fill="#1e1b4b"/>
+  
+  <!-- Video Grid (4 participants) -->
+  <!-- Top Left - Teacher/Mentor (Gold) -->
+  <rect x="36" y="41" width="24" height="15" rx="1" fill="url(#lightGoldGradient)"/>
+  <circle cx="48" cy="46" r="3" fill="white" opacity="0.95"/>
+  <path d="M 48 49 Q 48 52 45 52 L 51 52 Q 51 49 48 49" fill="white" opacity="0.95"/>
+  
+  <!-- Top Right - Student (Violet) -->
+  <rect x="63" y="41" width="24" height="15" rx="1" fill="url(#violetGradient)"/>
+  <circle cx="75" cy="46" r="3" fill="white" opacity="0.95"/>
+  <path d="M 75 49 Q 75 52 72 52 L 78 52 Q 78 49 75 49" fill="white" opacity="0.95"/>
+  
+  <!-- Bottom Left - Student (Violet) -->
+  <rect x="36" y="59" width="24" height="15" rx="1" fill="url(#violetGradient)" opacity="0.85"/>
+  <circle cx="48" cy="64" r="3" fill="white" opacity="0.95"/>
+  <path d="M 48 67 Q 48 70 45 70 L 51 70 Q 51 67 48 67" fill="white" opacity="0.95"/>
+  
+  <!-- Bottom Right - Student (Violet) -->
+  <rect x="63" y="59" width="24" height="15" rx="1" fill="url(#violetGradient)" opacity="0.85"/>
+  <circle cx="75" cy="64" r="3" fill="white" opacity="0.95"/>
+  <path d="M 75 67 Q 75 70 72 70 L 78 70 Q 78 67 75 67" fill="white" opacity="0.95"/>
+  
+  <!-- Monitor Stand with Gold Accent -->
+  <rect x="54" y="77" width="12" height="4" rx="1" fill="url(#lightGoldGradient)" opacity="0.95"/>
+  <rect x="48" y="81" width="24" height="3" rx="1" fill="url(#luxuryGoldGradient)" opacity="0.95"/>
+  
+  <!-- Connection/Network Lines (Gold) -->
+  <circle cx="60" cy="25" r="4.5" fill="#fbbf24" opacity="0.9"/>
+  <circle cx="60" cy="25" r="3" fill="#fef3c7" opacity="0.8"/>
+  <line x1="60" y1="29" x2="60" y2="35" stroke="#fbbf24" stroke-width="2.5" opacity="0.7"/>
+  <line x1="60" y1="30" x2="48" y2="35" stroke="#fbbf24" stroke-width="2" opacity="0.6"/>
+  <line x1="60" y1="30" x2="72" y2="35" stroke="#fbbf24" stroke-width="2" opacity="0.6"/>
+  
+  <!-- WiFi/Connectivity Symbol (Gold) -->
+  <path d="M 25 90 Q 30 85 35 90" stroke="#fbbf24" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.8"/>
+  <path d="M 20 95 Q 30 80 40 95" stroke="#f59e0b" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+  
+  <!-- Premium Badge -->
+  <circle cx="85" cy="92" r="5" fill="#8b5cf6" opacity="0.9"/>
+  <circle cx="85" cy="92" r="3.5" fill="#a78bfa"/>
+  <text x="93" y="96" font-family="Arial, sans-serif" font-size="8" fill="#fef3c7" font-weight="bold">LIVE</text>
+</svg>
