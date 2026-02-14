@@ -47,7 +47,7 @@ const TeacherDashboard = () => {
 socket.on("doubt_taken", ({ doubtId }) => {
     setIncomingDoubt(prev => {
       if (prev && prev.doubtId === doubtId) {
-        return null;   // doubt card ko remove kar rahe h
+        return null;
       }
       return prev;
     });
@@ -66,11 +66,7 @@ socket.on("doubt_taken", ({ doubtId }) => {
   };
   }, []);
 
-
-
-
     useEffect(() => {
-    // Clear any stale room data on mount
     localStorage.removeItem("callEnded");
     setRoomId(null);
 

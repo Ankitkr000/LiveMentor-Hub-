@@ -1,4 +1,3 @@
-// src/components/ChatRoom.jsx
 import { useState, useEffect, useRef } from "react";
 import socket from "../socket";
 import styles from './css/ChatRoom.module.css';
@@ -25,7 +24,6 @@ const ChatRoom = ({ roomId }) => {
   }, []);
 
   useEffect(() => {
-    // Auto-scroll to bottom when new messages arrive
     if (chatMessagesRef.current) {
       chatMessagesRef.current.scrollTop = chatMessagesRef.current.scrollHeight;
     }
@@ -34,7 +32,6 @@ const ChatRoom = ({ roomId }) => {
   const handleFileSelect = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Check file size (limit to 5MB)
       if (file.size > 5 * 1024 * 1024) {
         alert("File size should be less than 5MB");
         return;
@@ -42,7 +39,6 @@ const ChatRoom = ({ roomId }) => {
 
       setSelectedFile(file);
 
-      // Create preview for images
       if (file.type.startsWith('image/')) {
         const reader = new FileReader();
         reader.onload = (e) => {
@@ -65,7 +61,6 @@ const ChatRoom = ({ roomId }) => {
 
   const sendMessage = () => {
     if (selectedFile) {
-      // Send file
       const reader = new FileReader();
       reader.onload = (e) => {
         const fileData = {
@@ -87,7 +82,6 @@ const ChatRoom = ({ roomId }) => {
       };
       reader.readAsDataURL(selectedFile);
     } else if (message.trim()) {
-      // Send text message
       socket.emit("send_message", {
         roomId,
         sender: userName,
@@ -99,7 +93,6 @@ const ChatRoom = ({ roomId }) => {
 
   return (
     <div className={styles.chatroomContainer}>
-      {/* Chat Header */}
       <div className={styles.chatHeader}>
         <div className={styles.chatHeaderContent}>
           <svg className={styles.chatLogoIcon} viewBox="0 0 24 24" fill="none">
@@ -176,7 +169,7 @@ const ChatRoom = ({ roomId }) => {
         )}
       </div>
 
-      {/* File Preview */}
+
       {selectedFile && (
         <div className={styles.filePreview}>
           <div className={styles.previewContent}>

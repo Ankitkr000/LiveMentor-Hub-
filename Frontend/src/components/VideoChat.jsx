@@ -37,17 +37,12 @@ const VideoChat = ({ isCaller, roomId }) => {
   };
 
   useEffect(() => {
-    // Reset video state on mount
-        setCameraOn(true);
+    setCameraOn(true);
     setMicOn(true);
     setStartTime(null);
     setElapsed(0);
 
-
     if (!roomId) return;
-
-
-
 
      const start = async () => {
     try {
@@ -73,7 +68,6 @@ const VideoChat = ({ isCaller, roomId }) => {
 
       peerRef.current = peer;
 
-      // Setup ontrack BEFORE setting remote description
       peer.ontrack = (event) => {
         console.log("🎥 Received remote track");
         if (remoteVideoRef.current) {
@@ -82,7 +76,7 @@ const VideoChat = ({ isCaller, roomId }) => {
       };
 
       stream.getTracks().forEach((track) => {
-        peer.addTrack(track, stream); //  Add local tracks
+        peer.addTrack(track, stream);
       });
 
       peer.onicecandidate = (event) => {
@@ -97,14 +91,12 @@ const VideoChat = ({ isCaller, roomId }) => {
         }
       };
 
-      //  Caller side
       if (isCaller) {
         const offer = await peer.createOffer();
         await peer.setLocalDescription(offer);
         socket.emit("offer", { offer, roomId });
       }
 
-      //  Handle Offer
       socket.on("offer", async ({ offer, roomId: incomingRoom }) => {
         if (incomingRoom !== roomId) return;
 
@@ -119,7 +111,6 @@ const VideoChat = ({ isCaller, roomId }) => {
         socket.emit("answer", { answer, roomId });
       });
 
-      //  Handle Answer
       socket.on("answer", async ({ answer, roomId: incomingRoom }) => {
         if (incomingRoom !== roomId) return;
 
@@ -130,7 +121,6 @@ const VideoChat = ({ isCaller, roomId }) => {
         pendingCandidates.current = [];
       });
 
-      //  Handle ICE Candidates
       socket.on("ice-candidate", async ({ candidate, roomId: incomingRoom }) => {
         if (incomingRoom !== roomId) return;
 

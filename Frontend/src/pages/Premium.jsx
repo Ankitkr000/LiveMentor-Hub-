@@ -30,7 +30,6 @@ const PremiumPage = () => {
     },
   ];
 
-  // Load Razorpay script
   const loadRazorpayScript = () => {
     return new Promise((resolve) => {
       const script = document.createElement('script');
@@ -44,7 +43,6 @@ const PremiumPage = () => {
   const handleBuyNow = async (plan) => {
     setLoading(plan.title);
 
-    // Load Razorpay script
     const scriptLoaded = await loadRazorpayScript();
     if (!scriptLoaded) {
       alert('Failed to load Razorpay SDK. Please check your internet connection.');
@@ -53,7 +51,6 @@ const PremiumPage = () => {
     }
 
     try {
-      // Create order on backend
       const orderResponse = await axios.post(
         'http://localhost:5000/payment/create-order',
         {
@@ -68,7 +65,6 @@ const PremiumPage = () => {
 
       const { order, key_id } = orderResponse.data;
 
-      // Razorpay checkout options
       const options = {
         key: key_id,
         amount: order.amount,
@@ -79,7 +75,6 @@ const PremiumPage = () => {
         order_id: order.id,
         handler: async function (response) {
           try {
-            // Verify payment on backend
             const verifyResponse = await axios.post(
               'http://localhost:5000/payment/verify',
               {
@@ -91,7 +86,6 @@ const PremiumPage = () => {
 
             if (verifyResponse.data.success) {
               alert(`Payment Successful! ✅\nYou've purchased ${plan.minutes} minutes.\nPayment ID: ${response.razorpay_payment_id}`);
-              // You can redirect or update user status here
             } else {
               alert('Payment verification failed. Please contact support.');
             }
@@ -140,7 +134,6 @@ const PremiumPage = () => {
         <p className={styles.subheading}>
           Buy minutes & connect instantly with top-rated tutors.
         </p>
- 
 
         <div className={styles.cardContainer}>
           {plans.map((plan, idx) => (
@@ -165,7 +158,6 @@ const PremiumPage = () => {
           ))}
         </div>
 
-        {/* Test Payment Info */}
         <div className={styles.testCardsInfo}>
           <h3>🧪 Test Payment (Demo Mode)</h3>
           <p className={styles.upiInfo}>

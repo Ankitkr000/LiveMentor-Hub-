@@ -37,11 +37,10 @@ useEffect(() => {
 const handleDoubtAccepted = ({ doubtId, teacherSocketId }) => {
   console.log(" Doubt accepted by teacher:", teacherSocketId);
   
-  // sabhi waiting state ko clear kar rahe h pahe --
   setIsSending(false);
   setIsWaitingForTutor(false);
   setCountdown(0);
-  setIsConnected(true);   // connected ko true kar rahe,before joining
+  setIsConnected(true);
 
   setRoomId(doubtId);
   socket.emit("join_room", { roomId: doubtId });
@@ -153,7 +152,7 @@ useEffect(() => {
                   />
                 </span>
               </h2>
-{/* View Group Meetings Button */}
+
               <div className={styles.meetingControlsStudent}>
                 <button 
                   className={styles.viewGroupMeetingsBtn}

@@ -65,7 +65,6 @@ const GroupVideoChat = () => {
       stream.getVideoTracks()[0].enabled = cameraOn;
       stream.getAudioTracks()[0].enabled = micOn;
 
-      // Join the meeting room
       socket.emit("join_group_meeting", { meetingLink, userName, userId });
 
       setupSocketListeners();
@@ -76,22 +75,19 @@ const GroupVideoChat = () => {
   };
 
   const setupSocketListeners = () => {
-    // When joining, get list of existing participants
     socket.on("existing_participants", ({ participants }) => {
       console.log("Existing participants:", participants);
       participants.forEach(socketId => {
-        createPeerConnection(socketId, true);  // true = create offer
+        createPeerConnection(socketId, true);
       });
     });
 
-    // When a new participant joins
     socket.on("new_participant_joined", ({ socketId, userName: newUserName }) => {
       console.log("New participant joined:", newUserName, socketId);
       setParticipants(prev => [...prev, { socketId, userName: newUserName }]);
-      createPeerConnection(socketId, false);  // false = wait for offer
+      createPeerConnection(socketId, false);
     });
 
-    // Receive offer from another peer
     socket.on("group_offer", async ({ offer, fromSocketId }) => {
       console.log("Received offer from:", fromSocketId);
       const peerData = peersRef.current[fromSocketId];
@@ -100,7 +96,6 @@ const GroupVideoChat = () => {
         try {
           await peerData.pc.setRemoteDescription(new RTCSessionDescription(offer));
           
-          // Process pending ICE candidates
           if (pendingCandidatesRef.current[fromSocketId]) {
             pendingCandidatesRef.current[fromSocketId].forEach(candidate => {
               peerData.pc.addIceCandidate(new RTCIceCandidate(candidate));
@@ -122,7 +117,6 @@ const GroupVideoChat = () => {
       }
     });
 
-    // Receive answer from another peer
     socket.on("group_answer", async ({ answer, fromSocketId }) => {
       console.log("Received answer from:", fromSocketId);
       const peerData = peersRef.current[fromSocketId];
@@ -131,7 +125,6 @@ const GroupVideoChat = () => {
         try {
           await peerData.pc.setRemoteDescription(new RTCSessionDescription(answer));
           
-          // Process pending ICE candidates
           if (pendingCandidatesRef.current[fromSocketId]) {
             pendingCandidatesRef.current[fromSocketId].forEach(candidate => {
               peerData.pc.addIceCandidate(new RTCIceCandidate(candidate));
@@ -144,7 +137,6 @@ const GroupVideoChat = () => {
       }
     });
 
-    // Receive ICE candidate
     socket.on("group_ice_candidate", ({ candidate, fromSocketId }) => {
       const peerData = peersRef.current[fromSocketId];
       
@@ -152,7 +144,6 @@ const GroupVideoChat = () => {
         if (peerData.pc.remoteDescription) {
           peerData.pc.addIceCandidate(new RTCIceCandidate(candidate));
         } else {
-          // Store candidate for later
           if (!pendingCandidatesRef.current[fromSocketId]) {
             pendingCandidatesRef.current[fromSocketId] = [];
           }
@@ -161,7 +152,6 @@ const GroupVideoChat = () => {
       }
     });
 
-    // When a participant leaves
     socket.on("participant_left", ({ socketId }) => {
       console.log("Participant left:", socketId);
       removePeer(socketId);
@@ -170,7 +160,7 @@ const GroupVideoChat = () => {
   };
 
   const createPeerConnection = async (socketId, shouldCreateOffer) => {
-    if (peersRef.current[socketId]) return;  // Already exists
+    if (peersRef.current[socketId]) return;
 
     const pc = new RTCPeerConnection({
       iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
