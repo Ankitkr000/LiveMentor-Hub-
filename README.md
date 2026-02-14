@@ -30,6 +30,13 @@
 
 ---
 
+<img width="2858" height="1486" alt="image" src="https://github.com/user-attachments/assets/47df3875-a5c1-4a5a-b83a-4b3f096afdb1" />
+<img width="2860" height="1526" alt="image" src="https://github.com/user-attachments/assets/f196846c-94a7-434d-8059-db07fd3f477e" />
+
+
+
+
+
 ## 🎯 Problem Statement
 
 **Challenge:** Provide live virtual classroom support with chat, video, and content sharing features.
