@@ -4,7 +4,6 @@ const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY
 });
 
-// Chat with AI Assistant
 const chatWithAI = async (req, res) => {
   try {
     const { message, conversationHistory } = req.body;
@@ -16,7 +15,6 @@ const chatWithAI = async (req, res) => {
       });
     }
 
-    // Build conversation messages
     const messages = [
       {
         role: "system",
@@ -33,7 +31,6 @@ Guidelines:
       }
     ];
 
-    // Add conversation history if exists
     if (conversationHistory && conversationHistory.length > 0) {
       conversationHistory.forEach(msg => {
         messages.push({
@@ -43,13 +40,11 @@ Guidelines:
       });
     }
 
-    // Add current user message
     messages.push({
       role: "user",
       content: message
     });
 
-    // Generate response using Groq
     const completion = await groq.chat.completions.create({
       messages: messages,
       model: "llama-3.3-70b-versatile",
@@ -64,7 +59,7 @@ Guidelines:
     res.status(200).json({
       success: true,
       message: aiMessage,
-      conversationId: req.user._id // Use user ID as conversation identifier
+      conversationId: req.user._id
     });
 
   } catch (error) {
@@ -77,7 +72,6 @@ Guidelines:
   }
 };
 
-// Get suggested questions based on subject
 const getSuggestedQuestions = async (req, res) => {
   try {
     const { subject } = req.query;
@@ -121,7 +115,6 @@ Make them practical, engaging, and suitable for intermediate learners.`
   }
 };
 
-// Explain a concept
 const explainConcept = async (req, res) => {
   try {
     const { concept, subject, level } = req.body;
@@ -174,7 +167,6 @@ Keep the explanation clear, engaging, and practical.`
   }
 };
 
-// Code review and suggestions
 const reviewCode = async (req, res) => {
   try {
     const { code, language, context } = req.body;

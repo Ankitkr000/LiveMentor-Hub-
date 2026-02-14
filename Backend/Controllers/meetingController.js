@@ -2,7 +2,6 @@ const meetingModel = require("../Models/meetingSchema");
 const userModel = require("../Models/userSchema");
 const { v4: uuidv4 } = require('uuid');
 
-// Create a new group meeting
 const createMeeting = async (req, res) => {
   try {
     const { title, description, subject, scheduledTime, duration, maxParticipants } = req.body;
@@ -16,7 +15,6 @@ const createMeeting = async (req, res) => {
       });
     }
 
-    // Generate unique meeting link
     const meetingLink = uuidv4();
 
     const newMeeting = new meetingModel({
@@ -48,7 +46,6 @@ const createMeeting = async (req, res) => {
   }
 };
 
-// Get all meetings for a teacher
 const getTeacherMeetings = async (req, res) => {
   try {
     const teacherId = req.user._id;
@@ -70,14 +67,13 @@ const getTeacherMeetings = async (req, res) => {
   }
 };
 
-// Get all available meetings for students
 const getAvailableMeetings = async (req, res) => {
   try {
     const { subject } = req.query;
     
     let query = { 
       status: { $in: ["scheduled", "ongoing"] },
-      scheduledTime: { $gte: new Date(Date.now() - 24 * 60 * 60 * 1000) } // meetings from last 24 hours
+      scheduledTime: { $gte: new Date(Date.now() - 24 * 60 * 60 * 1000) }
     };
 
     if (subject) {
@@ -102,7 +98,6 @@ const getAvailableMeetings = async (req, res) => {
   }
 };
 
-// Join a meeting
 const joinMeeting = async (req, res) => {
   try {
     const { meetingLink } = req.params;
@@ -132,7 +127,6 @@ const joinMeeting = async (req, res) => {
       });
     }
 
-    // Check if user already joined
     const alreadyJoined = meeting.participants.some(
       p => p.userId.toString() === userId.toString()
     );
@@ -161,7 +155,6 @@ const joinMeeting = async (req, res) => {
   }
 };
 
-// Update meeting status
 const updateMeetingStatus = async (req, res) => {
   try {
     const { meetingId } = req.params;

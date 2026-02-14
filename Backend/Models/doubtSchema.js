@@ -10,8 +10,6 @@ const doubtSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-
-  
   question: { type: String, required: true },
   subject: { type: String, required: true },
   matchedTeacherId: {

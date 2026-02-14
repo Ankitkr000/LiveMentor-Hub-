@@ -28,7 +28,7 @@ const meetingSchema = new mongoose.Schema({
     required: true
   },
   duration: {
-    type: Number, // in minutes
+    type: Number,
     default: 60
   },
   maxParticipants: {

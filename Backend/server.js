@@ -34,7 +34,7 @@ const io = new Server(server, {
     origin: "http://localhost:5174",
     credentials: true
   },
-  maxHttpBufferSize: 10 * 1024 * 1024 // 10MB limit for file uploads
+  maxHttpBufferSize: 10 * 1024 * 1024
 });
 app.set("io", io);
 const socketHandler = require("./socket/socketHandler");

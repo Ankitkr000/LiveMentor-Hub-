@@ -65,7 +65,7 @@ const signup=async(req,res)=>{
           if(!isPasswordValid){
               return res.status(401).json({ message: "Invalid credentials" });
           }
-        await userModel.findByIdAndUpdate(isUserRegistered._id, { isOnline: true });  // as the user logins , after veriying the credentials , setting "isOnline true"
+        await userModel.findByIdAndUpdate(isUserRegistered._id, { isOnline: true });
           const token = generateJWT({ 
           userId: isUserRegistered._id, 
           email: isUserRegistered.email, 
@@ -112,9 +112,7 @@ const logout = async (req, res) => {
       return res.status(401).json({ message: "Invalid or expired token" });
     }
 
-    
-    await userModel.findByIdAndUpdate(decoded.userId, { isOnline: false }); // as the user logout , setting "isOnline false"
-
+    await userModel.findByIdAndUpdate(decoded.userId, { isOnline: false });
 
 res.clearCookie("token", {
   httpOnly: true,
@@ -191,7 +189,6 @@ const getUserById = async (req, res) => {
   }
 };
 
-// Update user by ID
 const updateUserById = async (req, res) => {
   try {
     const updatedUser = await userModel.findByIdAndUpdate(
@@ -244,7 +241,6 @@ const askDoubt = async (req, res) => {
       return res.status(400).json({ message: "All fields required." });
     }
 
-    // Create new doubt
     const newDoubt = new doubtModel({
       studentId: req.user._id,
       question,
@@ -252,7 +248,6 @@ const askDoubt = async (req, res) => {
       studentSocketId,
     });
 
-    // Find ALL available teachers for this subject
     const availableTeachers = await userModel.find({
       role: "teacher",
       isOnline: true,
@@ -268,8 +263,7 @@ const askDoubt = async (req, res) => {
     if (availableTeachers.length > 0) {
       const io = req.app.get("io");
       
-   
-      availableTeachers.forEach(teacher => {   // sending doubt to all avaible teacher
+      availableTeachers.forEach(teacher => {
         console.log(`Sending doubt to teacher ${teacher._id} with socket ${teacher.socketId}`);
         io.to(teacher.socketId).emit("incoming_doubt", {
           doubtId: newDoubt._id,

@@ -1,13 +1,11 @@
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
 
-// Initialize Razorpay instance
 const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
   key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
 
-// Create a payment order
 const createOrder = async (req, res) => {
   try {
     const { amount, planName } = req.body;
@@ -20,7 +18,7 @@ const createOrder = async (req, res) => {
     }
 
     const options = {
-      amount: amount * 100, // amount in smallest currency unit (paise)
+      amount: amount * 100,
       currency: "INR",
       receipt: `receipt_${Date.now()}`,
       notes: {
@@ -47,7 +45,6 @@ const createOrder = async (req, res) => {
   }
 };
 
-// Verify payment signature
 const verifyPayment = async (req, res) => {
   try {
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
@@ -59,19 +56,14 @@ const verifyPayment = async (req, res) => {
       });
     }
 
-    // Create signature string
     const sign = razorpay_order_id + "|" + razorpay_payment_id;
     
-    // Generate expected signature
     const expectedSign = crypto
       .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
       .update(sign.toString())
       .digest("hex");
 
-    // Verify signature
     if (razorpay_signature === expectedSign) {
-      // Payment verified successfully
-      // Here you can update user's premium status in database
       
       return res.status(200).json({
         success: true,
@@ -94,7 +86,6 @@ const verifyPayment = async (req, res) => {
   }
 };
 
-// Get payment details
 const getPaymentDetails = async (req, res) => {
   try {
     const { paymentId } = req.params;
